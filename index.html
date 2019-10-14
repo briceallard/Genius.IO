@@ -35,7 +35,7 @@
 			</div>
 
 			<div class="flex-w m-t-10 m-b-10">
-				<a href="#" class="size2 m1-txt1 flex-c-m how-btn1 trans-04">
+				<a onclick="openEmailModal()" href="#" class="size2 m1-txt1 flex-c-m how-btn1 trans-04">
 					Sign Up
 				</a>
 			</div>
@@ -87,7 +87,29 @@
 	</div>
 
 
-
+	<div id="emailModal" class="modal" tabindex="-1" role="dialog">
+	  <div class="modal-dialog" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<h5 class="modal-title">Sign up!</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+		  </div>
+		  <div class="modal-body">
+			<form id="emailForm" method="POST" action="/">
+				<div class="form-group">
+					<label>Email</label>
+					<input required type="email" class="form-control" name="email" placeholder="example@example.com">
+				</div>
+				<div class="form-group text-right">
+					<input type="submit" class="btn btn-sm btn-outline-success" value="Submit">
+				</div>
+			</form>
+		  </div>
+		</div>
+	  </div>
+	</div>
 
 
 <!--===============================================================================================-->
@@ -102,7 +124,13 @@
 	<script src="vendor/countdowntime/moment-timezone.min.js"></script>
 	<script src="vendor/countdowntime/moment-timezone-with-data.min.js"></script>
 	<script src="vendor/countdowntime/countdowntime.js"></script>
-	<script>
+<!--===============================================================================================-->
+	<script src="vendor/tilt/tilt.jquery.min.js"></script>
+	<script type="text/javascript">
+		function openEmailModal() {
+			$("#emailModal").modal('show');
+			$('#emailModal [type="email"]').focus();
+		}
 		$('.cd100').countdown100({
 			/*Set Endtime here*/
 			/*Endtime must be > current time*/
@@ -116,13 +144,14 @@
 			// ex:  timeZone: "America/New_York"
 			//go to " http://momentjs.com/timezone/ " to get timezone
 		});
-	</script>
-<!--===============================================================================================-->
-	<script src="vendor/tilt/tilt.jquery.min.js"></script>
-	<script >
 		$('.js-tilt').tilt({
 			scale: 1.1
-		})
+		});
+		$(document).ready(function(){
+			/*$("#emailForm").submit(function(e){
+				$('#emailModal [type="text"]').val("");
+			});*/ // lol this isn't an ajax request what i doing
+		});
 	</script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
